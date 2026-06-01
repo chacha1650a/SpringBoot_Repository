@@ -5,8 +5,47 @@
 
 <mapper namespace="com.korit.ch03.mapper.RoleMapper">
 
-<insert id="insert" parameterType="Role" useGeneratedKeys="true" keyProperty="id">
-    insert into roles values
-    (default, #{roleName}, now(), now())
+    <insert id="insert" parameterType="Role" useGeneratedKeys="true" keyProperty="id">
+        insert into roles values
+        (default, #{roleName}, now(), now())
     </insert>
+    <select id="selectAll" resultType="Role">
+        select
+            id,
+            roleName,
+            createdAt,
+            updatedAt
+        from
+            roles
+        order by
+            id
+    </select>
+
+    <select id="selectById" resultType="Role">
+        select
+            id,
+            roleName,
+            createdAt,
+            updatedAt
+        from
+            roles
+        where
+            id = ${roleId}
+        order by
+            id
+    </select>
+
+    <select id="selectByRoleName" resultType="Role">
+        select
+            id,
+            roleName,
+            createdAt,
+            updatedAt
+        from
+            roles
+        where
+            role_name = ${roleName}
+        order by
+            id
+    </select>
 </mapper>

@@ -9,8 +9,6 @@ import java.time.LocalDateTime;
 
 @Data
 @Builder
-@NoArgsConstructor
-@AllArgsConstructor
 public class RoleResp {
     private Long id;
     private String roleName;
