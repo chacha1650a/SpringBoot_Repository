@@ -19,7 +19,7 @@ public class ApiResponse<T> {
     }
 
     public static <T> ApiResponse<T> success(T body) {
-        return new ApiResponse<T> (true, "요청 성공", null);
+        return new ApiResponse<T> (true, "요청 성공", body);
     }
 
     public static <T> ApiResponse<T> success(String message, T body) {
@@ -35,7 +35,7 @@ public class ApiResponse<T> {
     }
 
     public static <T> ApiResponse<T> fail(T body) {
-        return new ApiResponse<T> (false, "요청 실패", null);
+        return new ApiResponse<T> (false, "유효성 검사 실패", body);
     }
 
     public static <T> ApiResponse<T> fail(String message, T body) {

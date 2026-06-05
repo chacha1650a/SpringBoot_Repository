@@ -5,7 +5,7 @@
 
 <mapper namespace="com.korit.ch04api.mapper.UserMapper">
     <resultMap id="UserResultMap" type="User">
-        <id property="id" column="user+"/>
+        <id property="id" column="user_id"/>
         <result property="username" column="username" />
         <result property="password" column="password" />
         <result property="name" column="name" />
@@ -16,12 +16,12 @@
 
     <resultMap id="RoleResultMap" type="Role">
         <id property="id" column="role_id" />
-        <id property="roleName" column="role_name" />
+        <result property="roleName" column="role_name" />
     </resultMap>
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="id">
         insert into users values
-        (default, #{username}, #{password}, #{name}, #{email}, #{roleId])
+        (default, #{username}, #{password}, #{name}, #{email}, #{roleId})
     </insert>
 
     <select id="selectByUsername" resultMap="UserResultMap">
@@ -31,8 +31,7 @@
             u.password,
             u.name,
             u.email,
-            u.role_id
-
+            u.role_id as user_role_id,
             r.id as role_id,
             r.role_name
         from
@@ -41,7 +40,7 @@
         where
             u.username = #{username}
         order by
-            id
+            u.id
     </select>
 
     <select id="selectById" resultMap="UserResultMap">
@@ -51,7 +50,7 @@
             u.password,
             u.name,
             u.email,
-            u.role_id
+            u.role_id as user_role_id,
 
             r.id as role_id,
             r.role_name
@@ -61,7 +60,7 @@
         where
             u.id = #{userId}
         order by
-            id
+            u.id
     </select>
 
 </mapper>
