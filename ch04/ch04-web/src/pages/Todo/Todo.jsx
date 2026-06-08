@@ -15,7 +15,7 @@ const Todo = () => {
         try {
             const data = await getTodos();
             if (data.success) {
-                setTodos(data.data);
+                setTodos(data.body || []);
             }
         } catch (error) {
             console.error("Failed to fetch todos", error);
