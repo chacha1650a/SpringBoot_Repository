@@ -20,7 +20,7 @@ public class TodoService {
 
     private int getAuthenticatedUserId() {
         PrincipalUser principalUser = (PrincipalUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        return principalUser.getUser().getId();
+        return Math.toIntExact(principalUser.getUser().getId());
     }
 
     @Transactional(rollbackFor = Exception.class)

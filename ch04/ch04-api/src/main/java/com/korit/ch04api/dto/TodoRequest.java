@@ -1,7 +1,7 @@
 package com.korit.ch04api.dto;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
-import javax.validation.constraints.NotBlank;
 
 @Data
 public class TodoRequest {
