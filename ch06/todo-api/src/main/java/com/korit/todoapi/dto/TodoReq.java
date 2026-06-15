@@ -16,5 +16,7 @@ public class TodoReq {
     private LocalDateTime dueTime;
     private LocalDateTime createdAt;
     private String priority;
-    private int isCompleted;
+
+    private Integer isCompleted;
+    private Integer isFlagged;
 }

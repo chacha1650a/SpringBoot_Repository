@@ -10,6 +10,9 @@ public interface TodoMapper {
 
     int insert(Todo todo);
 
-    List<Todo> selectById();
-    Todo selectByTitle(String title);
+    List<Todo> selectByUserId();
+    Todo selectById(Long id);
+
+    int updateTodo(Todo todo);
+    int deleteTodo(Long id);
 }

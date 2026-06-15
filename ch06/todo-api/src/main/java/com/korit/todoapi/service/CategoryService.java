@@ -73,6 +73,7 @@ public class CategoryService {
         categoryMapper.delete(categoryId);
     }
 
+
     public List<categoryCompletionCountResp> categoryCompleted(Long userId) {
         return categoryMapper.countNotCompletedByUserId(userId).stream()
                 .map(categoryCompletionCountResp::fromEntity)

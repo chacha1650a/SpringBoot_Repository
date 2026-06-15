@@ -9,13 +9,22 @@
         values (#{userId}, #{categoryId}, #{title}, #{memo}, #{dueDate}, #{dueTime}, #{priority}, #{isFlagged}, #{isCompleted}, now(), now(), now())
     </insert>
 
+    <select id="selectByUserId" resultType="com.korit.todoapi.entity.Todo">
+        select
+            *
+        from
+            todos
+        order by
+            created_at asc;
+    </select>
+
     <select id="selectById" resultType="com.korit.todoapi.entity.Todo">
         select
             *
         from
             todos
         where
-            user_id = #{userId}
+            id = #{id}
         order by
             created_at asc;
     </select>
@@ -31,14 +40,13 @@
             created_at asc;
     </select>
 
-    <update id="update">
+    <update id="updateTodo">
         update todos
-        set title = #{title}, memo = #{memo}, due_date = now(), due_time = now(), is_flagged = #{isFlagged}, is_completed = #{isCompleted}, completed_at = #{completedAt}, created_at = now()
-        where id = #{id} and user_id = #{userId};
-
+        set title = #{title}, memo = #{memo}, due_date = #{dueDate}, due_time = #{dueTime}, priority = #{priority}, is_flagged = #{isFlagged}, is_completed = #{isCompleted}, completed_at = #{completedAt}, updated_at = now()
+        where id = #{id}
     </update>
 
-    <delete id="delete">
+    <delete id="deleteTodo">
         delete
         from
             todos
