@@ -25,6 +25,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
             oAuth2UserInfo = new KakaoUserInfo(auth2User.getAttributes());
         }
 
+        System.out.println(oAuth2UserInfo.getAttributes());
         return new DefaultOAuth2User(auth2User.getAuthorities(), oAuth2UserInfo.getAttributes(), "providerId");
     }
 

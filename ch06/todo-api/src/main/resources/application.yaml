@@ -1,16 +1,14 @@
 spring:
-  application:
-    name: todo-api
   profiles:
     include: secret
 
 mybatis:
-  mapper-locations: classpath:mapper/**/*.xml
-  type-aliases-package: com.korit.todoapi.entity
+  mapper-locations: classpath:mapper/**/*.xml   # mapper.xml파일 경로 설정
+  type-aliases-package: com.korit.todoapi.entity   # mapper.xml안에서 entity 참조 경로 설정
   configuration:
-    map-underscore-to-camel-case: true
-    jdbc-type-for-null: 'NULL'
+    map-underscore-to-camel-case: true          # 스네이크 표기법을 카멜표기법으로 자동 치환
+    jdbc-type-for-null: 'NULL'                  # JAVA에서 null값을 MySQL의 NULL이라는 표기로 변환
 
-db:
-  init-status:
-    - roles: false
+app:
+  oauth2:
+    redirect-uri: http://localhost:5173/auth/oauth2/callback
