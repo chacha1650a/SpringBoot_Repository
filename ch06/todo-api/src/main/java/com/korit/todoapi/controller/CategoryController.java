@@ -1,17 +1,17 @@
 package com.korit.todoapi.controller;
 
-import com.korit.todoapi.dto.CategoryReq;
-import com.korit.todoapi.dto.CategoryResp;
-import com.korit.todoapi.entity.Category;
-import com.korit.todoapi.security.OAuth2SuccessHandler;
+import com.korit.todoapi.dto.ApiResponse;
+import com.korit.todoapi.dto.CreateResponse;
+import com.korit.todoapi.dto.category.CategoryModifyReq;
+import com.korit.todoapi.dto.category.CategoryReq;
+import com.korit.todoapi.entity.CategoryCompletionCount;
 import com.korit.todoapi.service.CategoryService;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import lombok.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RequestMapping("/api/categories")
 @RestController
@@ -20,34 +20,29 @@ public class CategoryController {
     private final CategoryService categoryService;
 
     @PostMapping
-    public ResponseEntity<CategoryResp> createCategory( @AuthenticationPrincipal Long userId, @RequestBody CategoryReq categoryReq) {
-        return ResponseEntity.ok(categoryService.createCategory(userId, categoryReq));
+    public ResponseEntity<ApiResponse<CreateResponse>> create(@RequestBody CategoryReq dto) {
+        return ResponseEntity.ok(ApiResponse.success(categoryService.create(dto)));
     }
 
     @GetMapping
-    public ResponseEntity<?> get(@AuthenticationPrincipal Long userId) {
-//        Long userId = (Long) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-        return ResponseEntity.ok(categoryService.getCategoriesByUserId(userId));
-    }
-
-    @GetMapping("/count/completion/not")
-    public ResponseEntity<?> notCompleted(@AuthenticationPrincipal Long userId) {
-
-        return ResponseEntity.ok(categoryService.categoryCompleted(userId));
+    public ResponseEntity<ApiResponse<?>> getAll(@AuthenticationPrincipal Long userId) {
+        return ResponseEntity.ok(ApiResponse.success(categoryService.getAll(userId)));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateCategory(@AuthenticationPrincipal Long userId, @PathVariable Long id, @RequestBody CategoryReq req){
-
-        return ResponseEntity.ok(categoryService.updateCategory(userId, id, req));
+    public ResponseEntity<ApiResponse<?>> modify(@PathVariable Long id,  @RequestBody CategoryModifyReq dto){
+        categoryService.modify(dto);
+        return ResponseEntity.ok(ApiResponse.success("수정 완료"));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteCategory(@AuthenticationPrincipal Long userId, @PathVariable Long id){
-        categoryService.deleteCategory(userId, id);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<?> delete(@PathVariable Long id){
+        categoryService.delete(id);
+        return ResponseEntity.ok(ApiResponse.success("삭제 완료"));
     }
 
-
+    @GetMapping("/count/completion/not")
+    public ResponseEntity<ApiResponse<List<CategoryCompletionCount>>> notCompleted(@AuthenticationPrincipal Long userId) {
+        return ResponseEntity.ok(ApiResponse.success(categoryService.getNotCompletedCount(userId)));
+    }
 }

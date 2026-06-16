@@ -1,4 +1,4 @@
-package com.korit.todoapi.dto;
+package com.korit.todoapi.dto.category;
 
 import com.korit.todoapi.entity.CategoryCompletionCount;
 import lombok.Builder;

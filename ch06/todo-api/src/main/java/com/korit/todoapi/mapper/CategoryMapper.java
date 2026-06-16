@@ -10,10 +10,12 @@ import java.util.List;
 public interface CategoryMapper {
 
     int insert(Category category);
-    Category selectByUsername(String categoryName);
 
-    List<Category> selectByUserId(Long userId);
+    Category selectByNameAndUserId(String categoryName, Long userId);
     Category selectById(Long id);
+
+    List<Category> selectAllByUserId(Long userId);
+
     int update(Category category);
     int delete(Long id);
 

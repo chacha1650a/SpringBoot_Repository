@@ -1,8 +1,10 @@
-package com.korit.todoapi.dto;
+package com.korit.todoapi.dto.category;
 
 import com.korit.todoapi.entity.Category;
 import lombok.Builder;
 import lombok.Data;
+
+import java.time.LocalDateTime;
 
 @Data
 @Builder
@@ -12,14 +14,14 @@ public class CategoryResp {
     private String name;
     private String color;
     private String icon;
+    private LocalDateTime createdAt;
 
-    public static CategoryResp fromEntity(Category category) {
+    public CategoryResp toResponse() {
         return CategoryResp.builder()
-                .id(category.getId())
-                .userId(category.getUserId())
-                .name(category.getName())
-                .color(category.getColor())
-                .icon(category.getIcon())
+                .name(name)
+                .color(color)
+                .icon(icon)
+                .createdAt(LocalDateTime.now())
                 .build();
     }
 }

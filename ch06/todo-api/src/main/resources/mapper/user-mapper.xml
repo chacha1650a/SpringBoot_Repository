@@ -25,7 +25,18 @@
     </select>
 
     <select id="selectById" resultType="com.korit.todoapi.entity.User">
-
-
+        select
+            id,
+            email,
+            nickname,
+            profile_image,
+            provider,
+            provider_id,
+            created_at
+        from
+            users
+        where
+            id = #{userId};
     </select>
+
 </mapper>
