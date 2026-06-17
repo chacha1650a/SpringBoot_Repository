@@ -1,0 +1,68 @@
+import TextButton from "../../components/buttons/TextButton/TextButton";
+import Header from "../../components/Header/Header";
+import { useMe } from "../../hooks/queries/useUser";
+import * as s from "./styles";
+
+function Home() {
+    const meQuery = useMe();
+
+    return (
+        <div css={s.layout}>
+            <Header>
+                <h2 css={s.title}>ReMind</h2>
+                <div css={s.profile(meQuery.data?.body.profileImage)}></div>
+            </Header>
+            <div css={s.boxGroup}>
+                <div css={s.box("#007AFF")}>
+                    <div>
+                        <div css={s.iconBox}></div>
+                        <div css={s.text}>
+                            <svg data-dc-tpl="86" width="16" height="16" viewBox="0 0 16 16" fill="none"><circle data-dc-tpl="87" cx="8" cy="8" r="5.5" stroke="white" stroke-width="1.8"></circle><path data-dc-tpl="88" d="M8 5.5V8.5l2 1.5" stroke="white" stroke-width="1.8" stroke-linecap="round"></path></svg>
+                            <span>5</span>
+                        </div>
+                    </div>
+                </div>
+                <div css={s.box("#FF3B30")}>
+                    <div css={s.iconBox}></div>
+                        <div css={s.text}>
+                            <svg data-dc-tpl="94" width="15" height="15" viewBox="0 0 15 15" fill="none"><rect data-dc-tpl="95" x="1.5" y="2.5" width="12" height="11" rx="2" stroke="white" stroke-width="1.8"></rect><path data-dc-tpl="96" d="M1.5 6.5h12M5 1.5v3M10 1.5v3" stroke="white" stroke-width="1.8" stroke-linecap="round"></path></svg>
+                            <span>5</span>
+                        </div>
+                </div>
+                <div css={s.box("#1C1C1E")}>
+                    <div css={s.iconBox}>
+                        <svg data-dc-tpl="102" width="16" height="12" viewBox="0 0 16 12" fill="none"><path data-dc-tpl="103" d="M1.5 2h13M1.5 6h13M1.5 10h9" stroke="white" stroke-width="1.8" stroke-linecap="round"></path></svg>
+                        <span>6</span>
+                    </div>
+
+                </div>
+                <div css={s.box("#636366")}>
+                    <div css={s.iconBox}>
+                        <svg data-dc-tpl="109" width="16" height="16" viewBox="0 0 16 16" fill="none"><circle data-dc-tpl="110" cx="8" cy="8" r="6.5" stroke="white" stroke-width="1.8"></circle><path data-dc-tpl="111" d="M4.5 8l2.5 2.5L11.5 5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                        <span>11</span>
+                    </div>
+
+                </div>
+                <div css={s.main}>
+                    <div>
+
+                    </div>
+                    <div css={s.listGroup}>
+                        <header>
+                            <h3>나의 목록</h3>
+                            <TextButton>편집</TextButton>
+                        </header>
+                        <ul>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
+}
+
+export default Home;
