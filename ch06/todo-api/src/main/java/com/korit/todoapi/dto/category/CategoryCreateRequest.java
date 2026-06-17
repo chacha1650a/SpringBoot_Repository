@@ -1,15 +1,13 @@
 package com.korit.todoapi.dto.category;
 
 import com.korit.todoapi.entity.Category;
-import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 import java.time.LocalDateTime;
 
 @Data
-public class CategoryModifyReq {
+public class CategoryCreateRequest {
     private Long userId;
-    @NotBlank(message = "카테고리 이름은 필수입니다.")
     private String name;
     private String color;
     private String icon;

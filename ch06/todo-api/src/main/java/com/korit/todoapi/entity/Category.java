@@ -1,6 +1,6 @@
 package com.korit.todoapi.entity;
 
-import com.korit.todoapi.dto.category.CategoryResp;
+import com.korit.todoapi.dto.category.CategoryResponse;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,12 +20,12 @@ public class Category {
     private String icon;
     private LocalDateTime createdAt;
 
-    public CategoryResp toResponse() {
-        return CategoryResp.builder()
-                .id(id)
-                .name(name)
-                .color(color)
-                .icon(icon)
+    public CategoryResponse toResponse() {
+        return CategoryResponse.builder()
+                .categoryId(id)
+                .categoryName(name)
+                .categoryColor(color)
+                .categoryIcon(icon)
                 .build();
     }
 }

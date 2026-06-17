@@ -1,6 +1,6 @@
 package com.korit.todoapi.entity;
 
-import com.korit.todoapi.dto.todo.TodoResp;
+import com.korit.todoapi.dto.todo.TodoResponse;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -23,15 +23,15 @@ public class Todo {
     private LocalDate dueDate;
     private LocalTime dueTime;
     private int priority;
-    private boolean isFlagged;
+    private boolean isFlagged ;
     private boolean isCompleted;
     private LocalDateTime completedAt;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
-    public TodoResp toResponse() {
-        return TodoResp.builder()
-                .id(id)
+    public TodoResponse toResponse() {
+        return TodoResponse.builder()
+                .todoId(id)
                 .userId(userId)
                 .categoryId(categoryId)
                 .title(title)

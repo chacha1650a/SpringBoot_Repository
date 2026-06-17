@@ -1,11 +1,10 @@
 package com.korit.todoapi.service;
 
-
 import com.korit.todoapi.dto.CreateResponse;
-import com.korit.todoapi.dto.todo.TodoCompletionReq;
-import com.korit.todoapi.dto.todo.TodoModifyReq;
-import com.korit.todoapi.dto.todo.TodoReq;
-import com.korit.todoapi.dto.todo.TodoResp;
+import com.korit.todoapi.dto.todo.TodoCompletionRequest;
+import com.korit.todoapi.dto.todo.TodoCreateRequest;
+import com.korit.todoapi.dto.todo.TodoModifyRequest;
+import com.korit.todoapi.dto.todo.TodoResponse;
 import com.korit.todoapi.entity.Todo;
 import com.korit.todoapi.mapper.TodoMapper;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +17,7 @@ import java.util.List;
 public class TodoService {
     private final TodoMapper todoMapper;
 
-    public CreateResponse create(TodoReq dto) {
+    public CreateResponse create(TodoCreateRequest dto) {
         Todo todo = dto.toTodo();
         todoMapper.insert(todo);
         return CreateResponse.builder()
@@ -27,18 +26,18 @@ public class TodoService {
                 .build();
     }
 
-    public List<TodoResp> getAll(Long userId) {
+    public List<TodoResponse> getAll(Long userId) {
         return todoMapper.selectAll()
                 .stream()
                 .map(Todo::toResponse)
                 .toList();
     }
 
-    public void complete(TodoCompletionReq dto) {
+    public void complete(TodoCompletionRequest dto) {
         todoMapper.updateCompleted(dto.getTodoId(), dto.isCompleted());
     }
 
-    public void modify(TodoModifyReq dto) {
+    public void modify(TodoModifyRequest dto) {
         todoMapper.update(dto.toTodo());
     }
 

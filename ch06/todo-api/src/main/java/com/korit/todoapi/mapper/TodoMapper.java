@@ -7,13 +7,11 @@ import java.util.List;
 
 @Mapper
 public interface TodoMapper {
-
     int insert(Todo todo);
-
+    Todo selectById(Long todoId);
     List<Todo> selectAll();
-    Todo selectById(Long id);
-
     int update(Todo todo);
-    int updateCompleted(Long  id, boolean isCompleted);
-    int delete(Long id);
+    int updateCompleted(Long todoId, boolean isCompleted);
+    int delete(Long todoId);
+
 }

@@ -26,4 +26,5 @@ public class RestAuthEntryPoint implements AuthenticationEntryPoint {
 
         response.getWriter().println(objectMapper.writeValueAsString(ApiResponse.fail("인증 실패")));
     }
+
 }

@@ -2,12 +2,8 @@ package com.korit.todoapi.security.jwt;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
-import io.jsonwebtoken.Jwt;
-import io.jsonwebtoken.Jwts;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.ServletRequest;
-import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -25,14 +21,14 @@ import java.util.List;
 @RequiredArgsConstructor
 public class JwtFilter extends OncePerRequestFilter {
 
-    private final JwtUtil jwtUtil;
+    private final JwtProvider jwtProvider;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String authorization = request.getHeader("Authorization");
         if (authorization != null && authorization.startsWith("Bearer ")) {
             String accessToken = authorization.substring(7);
-            Jws<Claims> claimsJwt = jwtUtil.parseAndValidate(accessToken);
+            Jws<Claims> claimsJwt = jwtProvider.parseAndValidate(accessToken);
             Long userId = Long.valueOf(claimsJwt.getPayload().getId());
 
             Authentication authentication = new UsernamePasswordAuthenticationToken(userId, "", List.of(new SimpleGrantedAuthority("ROLE_USER")));
@@ -42,3 +38,14 @@ public class JwtFilter extends OncePerRequestFilter {
     }
 
 }
+
+
+
+
+
+
+
+
+
+
+

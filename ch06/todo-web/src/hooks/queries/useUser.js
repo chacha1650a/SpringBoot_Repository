@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query"
-import { getMeRequest } from "../../api/userApi";
+import { getMeRequest } from "../../api/userApis";
 
 export const useMe = () => {
     const accessToken = localStorage.getItem("accessToken");
@@ -8,8 +8,7 @@ export const useMe = () => {
         queryKey: ["me", accessToken],
         queryFn: getMeRequest,
         retry: 0,
-        staleTime: 6000 * 10, 
+        staleTime: 6000 * 10,
         gcTime: 6000 * 10,
-
     });
 }

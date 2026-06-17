@@ -8,16 +8,11 @@ import java.util.List;
 
 @Mapper
 public interface CategoryMapper {
-
     int insert(Category category);
-
-    Category selectByNameAndUserId(String categoryName, Long userId);
-    Category selectById(Long id);
-
+    Category selectById(Long categoryId);
+    Category selectByNameAndUserId(String name, Long userId);
     List<Category> selectAllByUserId(Long userId);
-
     int update(Category category);
-    int delete(Long id);
-
+    int delete(Long categoryId);
     List<CategoryCompletionCount> countNotCompletedByUserId(Long userId);
 }

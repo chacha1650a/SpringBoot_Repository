@@ -5,12 +5,10 @@ import lombok.Data;
 
 @Data
 @Builder
-public class MeResp {
+public class MeResponse {
     private Long userId;
     private String email;
     private String nickname;
     private String profileImage;
     private String provider;
-    private String providerId;
-
 }

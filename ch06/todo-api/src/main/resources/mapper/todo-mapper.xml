@@ -8,7 +8,7 @@
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="id">
         insert into todos values
-        (default, #{userId}, #{categoryId}, #{title}, #{memo}, #{dueDate}, #{dueTime}, #{priority}, #{isFlagged}, #{isCompleted}, #{completedAt}, #{createdAt}, #{updatedAt})
+            (default, #{userId}, #{categoryId}, #{title}, #{memo}, #{dueDate}, #{dueTime}, #{priority}, #{isFlagged}, #{isCompleted}, #{completedAt}, #{createdAt}, #{updatedAt})
     </insert>
 
     <update id="update">
@@ -37,7 +37,8 @@
             id = #{todoId}
     </update>
     <delete id="delete">
-        delete from
+        delete
+        from
             todos
         where
             id = #{todoId}

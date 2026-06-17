@@ -22,7 +22,8 @@
     </update>
 
     <delete id="delete">
-        delete from
+        delete
+        from
             categories
         where
             id = #{id}
@@ -81,7 +82,7 @@
             color,
             icon,
             created_at
-            from
+        from
             categories
         where
             user_id = #{userId}

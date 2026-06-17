@@ -5,8 +5,10 @@ export function ProtectedRoutes() {
     const meQuery = useMe();
 
     if (meQuery.isLoading) {
-        return <h1>로딩중....</h1>
+        return <h1>로딩중...</h1>
     }
+
+    console.log(meQuery.data)
 
     const isLoggedIn = meQuery.data.success;
 
@@ -21,8 +23,9 @@ export function PublicOnlyRoute() {
     const meQuery = useMe();
 
     if (meQuery.isLoading) {
-        return <h1>로딩중....</h1>
+        return <h1>로딩중...</h1>
     }
+
 
     const isLoggedIn = meQuery.data.success;
 

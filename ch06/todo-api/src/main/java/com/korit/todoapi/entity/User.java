@@ -1,6 +1,6 @@
 package com.korit.todoapi.entity;
 
-import com.korit.todoapi.dto.user.MeResp;
+import com.korit.todoapi.dto.user.MeResponse;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -21,8 +21,8 @@ public class User {
     private String providerId;
     private LocalDateTime createdAt;
 
-    public MeResp toMe() {
-        return MeResp.builder()
+    public MeResponse toMe() {
+        return MeResponse.builder()
                 .userId(id)
                 .email(email)
                 .nickname(nickname)

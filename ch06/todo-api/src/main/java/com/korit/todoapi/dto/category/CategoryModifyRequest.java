@@ -1,23 +1,20 @@
 package com.korit.todoapi.dto.category;
 
 import com.korit.todoapi.entity.Category;
-import lombok.Builder;
 import lombok.Data;
 
 import java.time.LocalDateTime;
 
 @Data
-@Builder
-public class CategoryResp {
-    private Long id;
+public class CategoryModifyRequest {
     private Long userId;
     private String name;
     private String color;
     private String icon;
-    private LocalDateTime createdAt;
 
-    public CategoryResp toResponse() {
-        return CategoryResp.builder()
+    public Category toCategory() {
+        return Category.builder()
+                .userId(userId)
                 .name(name)
                 .color(color)
                 .icon(icon)

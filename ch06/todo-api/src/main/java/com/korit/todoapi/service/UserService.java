@@ -1,6 +1,6 @@
 package com.korit.todoapi.service;
 
-import com.korit.todoapi.dto.user.MeResp;
+import com.korit.todoapi.dto.user.MeResponse;
 import com.korit.todoapi.mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 public class UserService {
     private final UserMapper userMapper;
 
-    public MeResp getMe(Long userId) {
+    public MeResponse getMe(Long userId) {
         return userMapper.selectById(userId).toMe();
     }
 }

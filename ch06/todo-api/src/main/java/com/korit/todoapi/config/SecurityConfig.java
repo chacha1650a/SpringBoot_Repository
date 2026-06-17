@@ -1,7 +1,7 @@
 package com.korit.todoapi.config;
 
 import com.korit.todoapi.security.CustomOAuth2UserService;
-import com.korit.todoapi.security.OAuth2SuccessHandler;
+import com.korit.todoapi.security.OAuth2LoginSuccessHandler;
 import com.korit.todoapi.security.RestAuthEntryPoint;
 import com.korit.todoapi.security.jwt.JwtFilter;
 import lombok.RequiredArgsConstructor;
@@ -26,7 +26,7 @@ public class SecurityConfig {
 
     private final JwtFilter jwtFilter;
     private final CustomOAuth2UserService customOAuth2UserService;
-    private final OAuth2SuccessHandler oAuth2SuccessHandler;
+    private final OAuth2LoginSuccessHandler oAuth2LoginSuccessHandler;
     private final RestAuthEntryPoint restAuthEntryPoint;
 
     @Bean
@@ -35,13 +35,19 @@ public class SecurityConfig {
         http.cors(cors -> Customizer.withDefaults());
         http.sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
         http.exceptionHandling(ex -> ex.authenticationEntryPoint(restAuthEntryPoint));
-
         http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 
         http.oauth2Login(oauth2 -> oauth2
                 .userInfoEndpoint(ui -> ui.userService(customOAuth2UserService))
-                .successHandler(oAuth2SuccessHandler)
+                .successHandler(oAuth2LoginSuccessHandler)
         );
+
+        http.authorizeHttpRequests(req -> {
+            req.requestMatchers("/", "/login/**", "/oauth2/**").permitAll();
+            req.requestMatchers("/swagger-ui/**", "/v3/api-docs/**", "/api/auth/**").permitAll();
+            req.anyRequest().authenticated();
+        });
+
         return http.build();
     }
 

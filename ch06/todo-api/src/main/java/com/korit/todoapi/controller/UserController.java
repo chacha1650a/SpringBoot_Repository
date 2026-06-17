@@ -1,7 +1,7 @@
 package com.korit.todoapi.controller;
 
 import com.korit.todoapi.dto.ApiResponse;
-import com.korit.todoapi.dto.user.MeResp;
+import com.korit.todoapi.dto.user.MeResponse;
 import com.korit.todoapi.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +18,18 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping("/me")
-    public ResponseEntity<ApiResponse<MeResp>> me(@AuthenticationPrincipal Long userId) {
+    public ResponseEntity<ApiResponse<MeResponse>> me(@AuthenticationPrincipal Long userId) {
+        System.out.println(userId);
+
         return ResponseEntity.ok(ApiResponse.success(userService.getMe(userId)));
     }
+
 }
+
+
+
+
+
+
+
+
