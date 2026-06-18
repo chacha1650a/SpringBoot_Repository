@@ -39,6 +39,7 @@ export const boxGroup = css`
 
 export const box = (color) => css`
     display: flex;
+    flex-direction: column;
     box-sizing: border-box;
     padding: 16px;
     width: calc(50% - 6px);
@@ -96,12 +97,46 @@ export const listGroup = css`
             height: 60px;
             background-color: #ffffff;
             cursor: pointer;
+
+            & > a {
+                display: flex;
+                align-items: center;
+                gap: 13px;
+                height: 100%;
+                font-size: 17px;
+                text-decoration: none;
+                color: #1c1c1e;
+            }
         }
 
-        & > li:not(li:nth-last-child(1)) {
+        & > li:not(li:nth-last-of-type(1)) {
             border-bottom: 1px solid #f5f5f7;
             height: 61px;
         }
     }
+`;
+
+export const categoryIcon = (color) => css`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    border-radius: 50%;
+    padding-bottom: 4px;
+    width: 34px;
+    height: 34px;
+    background-color: ${color};
+`;
+
+export const categoryName = css`
+    flex-grow: 1;
+`;
+
+export const categoryCount = css`
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #8e8e93;
+    font-weight: 600;
 `;
 
