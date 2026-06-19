@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import * as s from "./styles";
 import { useSpinnersStore } from "../../store/spinners";
-import Spinners from "../Spinners/Spinners";
 import { useBottomModalStore } from "../../store/modalStore";
+import Spinners from "../../hooks/spinners/Spinners";
 
 function RootLayout({ children }) {
 

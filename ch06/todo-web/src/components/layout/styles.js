@@ -5,10 +5,10 @@ export const rootLayout = css`
     display: flex;
     flex-direction: column;
     border-radius: 44px;
-    overflow: hidden;
     width: 390px;
     height: 844px;
     background-color: #ffffff;
+    overflow: hidden;
 `;
 
 export const rootHeader = css`
@@ -39,6 +39,7 @@ export const main = css`
     width: 100%;
     flex-grow: 1;
     background-color: #dbdbdb;
+    overflow-y: hidden;
 `;
 
 export const modalLayout = css`

@@ -5,6 +5,7 @@ export const axiosInstance = axios.create({
     timeout: 5000,
 });
 
+// interceptor로 요청 도중 accessToken 주입 : Callback
 axiosInstance.interceptors.request.use((config) => {
     const token = localStorage.getItem("accessToken");
     if (!!token) {
@@ -13,6 +14,7 @@ axiosInstance.interceptors.request.use((config) => {
     return config;
 });
 
+// interceptor로 응답 도중 401 에러가 발생시 로그인 화면으로 리턴 : Callback
 axiosInstance.interceptors.response.use(
     (response) => response, 
     (error) => {
