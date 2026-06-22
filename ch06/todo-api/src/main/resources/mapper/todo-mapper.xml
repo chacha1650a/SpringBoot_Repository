@@ -7,8 +7,10 @@
 
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="id">
-        insert into todos values
-            (default, #{userId}, #{categoryId}, #{title}, #{memo}, #{dueDate}, #{dueTime}, #{priority}, #{isFlagged}, #{isCompleted}, #{completedAt}, #{createdAt}, #{updatedAt})
+        insert into todos
+            (user_id, category_id, title, memo, due_date, due_time, priority, is_flagged, created_at, updated_at)
+        values
+            (#{userId}, #{categoryId}, #{title}, #{memo}, #{dueDate}, #{dueTime}, #{priority}, #{isFlagged}, #{createdAt}, #{updatedAt})
     </insert>
 
     <update id="update">

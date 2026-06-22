@@ -105,7 +105,7 @@ function Home() {
                                                             categoryNotCompletedCountQuery.isLoading ||
                                                             categoryNotCompletedCountQuery.data.body
                                                                 .find(count => count.id === category.categoryId)
-                                                                ?.notCompletedCouunt || "0"
+                                                                ?.notCompletedCount || "0"
                                                         }
                                                     </span>
                                                     <svg data-dc-tpl="128" width="8" height="13" viewBox="0 0 8 13" fill="none" style={{ "margin-left": "4px" }}><path data-dc-tpl="129" d="M1 1l6 5.5L1 12" stroke="#C7C7CC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
